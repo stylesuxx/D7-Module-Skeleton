@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This script generates a new skeleton module for Drupal 7.x
-USAGE='Usage: ./generate.sh "Module Name"' 
+USAGE='Usage: ./generate.sh "Module Name" <destination>' 
 if [ $# -lt 1 ] || [ $# -gt 2 ]; then
 	echo $USAGE
 	exit
