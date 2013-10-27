@@ -41,8 +41,11 @@ echo -e "Machinename: $MACHINENAME"
 
 # Replace the placeholders in the files
 mkdir $DESTINATION/$MACHINENAME
-cp -r module/css $DESTINATION/$MACHINENAME/
-sed "s/@MODULENAME/$MODULENAME/g" module/module.info.tpl > $DESTINATION/$MACHINENAME/$MACHINENAME.info
+mkdir $DESTINATION/$MACHINENAME/js
+mkdir $DESTINATION/$MACHINENAME/css
+cp module/css/style.css.tpl $DESTINATION/$MACHINENAME/css/$MACHINENAME.css
+sed "s/@MACHINENAME/$MACHINENAME/g" module/js/js.js.tpl > $DESTINATION/$MACHINENAME/js/$MACHINENAME.js
+sed -e "s/@MODULENAME/$MODULENAME/g" -e "s/@MACHINENAME/$MACHINENAME/g" module/module.info.tpl > $DESTINATION/$MACHINENAME/$MACHINENAME.info
 sed "s/@MACHINENAME/$MACHINENAME/g" module/module.install.tpl > $DESTINATION/$MACHINENAME/$MACHINENAME.install
 sed "s/@MACHINENAME/$MACHINENAME/g" module/module.module.tpl > $DESTINATION/$MACHINENAME/$MACHINENAME.module
 
