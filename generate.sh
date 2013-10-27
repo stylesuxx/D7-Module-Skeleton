@@ -1,12 +1,13 @@
 #!/bin/bash
 
 # This script generates a new skeleton module for Drupal 7.x
-USAGE='Usage: ./generate.sh "Module Name" <destination>' 
+USAGE='Usage: ./generate.sh "Module Name" <destination>'
 if [ $# -lt 1 ] || [ $# -gt 2 ]; then
 	echo $USAGE
 	exit
 fi
 
+# Initialize all variables
 MODULENAME=$1
 DESTINATION=`pwd`
 MACHINENAME=`echo "${MODULENAME,,}" | sed s/\ /_/g`
@@ -40,8 +41,10 @@ echo -e "Machinename: $MACHINENAME"
 
 # Replace the placeholders in the files
 mkdir $DESTINATION/$MACHINENAME
+cp -r module/css $DESTINATION/$MACHINENAME/
 sed "s/@MODULENAME/$MODULENAME/g" module/module.info.tpl > $DESTINATION/$MACHINENAME/$MACHINENAME.info
 sed "s/@MACHINENAME/$MACHINENAME/g" module/module.install.tpl > $DESTINATION/$MACHINENAME/$MACHINENAME.install
 sed "s/@MACHINENAME/$MACHINENAME/g" module/module.module.tpl > $DESTINATION/$MACHINENAME/$MACHINENAME.module
 
+# We are done
 echo -e "Module successfully created."
